@@ -1,0 +1,201 @@
+<div class="container mx-auto mt-4">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Customer Registration
+                        <a routerLink="/home" class="float-end"><button type="button" class="btn btn-success headerButton" style="width:100%">Back to home</button></a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registrationForm" (ngSubmit)="onSubmitRegister()" >
+                        <div id="user-data">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="salutation">Title</label>
+                                        <select class="form-select" 
+                                        id="salutation"                                        
+                                        name="salutation" 
+                                        formControlName="salutation"
+                                        >
+                                            <option value="Mr">Mr</option>
+                                            <option value="Ms">Ms</option>
+                                            <option value="Mrs">Mrs</option>
+                                        </select>
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('salutation').valid && registrationForm.get('salutation').touched">Title is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="fname">First Name</label>
+                                        <input type="text" id="fname" 
+                                        class="form-control"
+                                        name="fname" 
+                                        formControlName="fname"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('fname').valid && registrationForm.get('fname').touched">First Name is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="lname">Last Name</label>
+                                        <input type="text" id="lname" 
+                                        class="form-control"
+                                        name="lname" 
+                                        formControlName="lname"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('lname').valid && registrationForm.get('lname').touched">Last Name is required</span>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="customerid">CustomerID</label>
+                                        <input type="text" id="customerid" 
+                                        class="form-control"
+                                        name="customerid" 
+                                        formControlName="customerid"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('customerid').valid && registrationForm.get('customerid').touched">CustomerID is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="emailid">Email</label>
+                                        <input type="email" id="emailid" 
+                                        class="form-control"
+                                        name="emailid" 
+                                        formControlName="emailid"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('emailid').valid && registrationForm.get('emailid').touched
+                                        && registrationForm.get('emailid').errors.required">Email is required</span>
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('emailid').valid && registrationForm.get('emailid').touched
+                                        && registrationForm.get('emailid').errors.email">Please enter valid email</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row" formGroupName="passwords">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" class="form-control"
+                                        name="password" 
+                                        formControlName="password"
+                                        >
+                                        <span class="text-danger" 
+                                        *ngIf="!registrationForm.get('passwords.password').valid
+                                        && registrationForm.get('passwords.password').touched">
+                                            Password is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cpassword">ConfirmPassword</label>
+                                        <input type="password" id="cpassword" class="form-control"
+                                        name="cpassword" 
+                                        formControlName="cpassword"
+                                        >
+                                        <span class="text-danger" *ngIf="!registrationForm.get('passwords.cpassword').valid
+                                        && registrationForm.get('passwords.cpassword').touched">
+                                            Confirm Password is required</span>
+                                        <span class="text-danger" *ngIf="registrationForm.get('passwords.cpassword').value !=null &&
+                                            registrationForm.get('passwords').errors?.mismatch 
+                                            &&(registrationForm.get('passwords').invalid)">
+                                            Passwords not match</span>
+                                    </div>
+                                </div>
+                            </div>  
+                            
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="mobileno">Mobile Number</label>
+                                        <input type="number" id="mobileno" 
+                                        class="form-control"
+                                        name="mobileno" 
+                                        formControlName="mobilenumber"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('mobilenumber').valid && registrationForm.get('mobilenumber').touched">Mobile Number is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" 
+                                        class="form-select"
+                                        name="gender" 
+                                        formControlName="gender"
+                                        >
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
+                                        </select>
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('gender').valid && registrationForm.get('gender').touched">Gender is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateofbirth">Date of Birth</label>
+                                        <input type="date" id="dateofbirth" 
+                                        class="form-control"
+                                        name="dateofbirth" 
+                                        formControlName="dateofbirth"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('dateofbirth').valid && registrationForm.get('dateofbirth').touched">Date of Birth is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="panno">PAN Number</label>
+                                        <input type="text" id="panno" 
+                                        class="form-control"
+                                        name="panno" 
+                                        formControlName="panno"
+                                        >
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('panno').valid && registrationForm.get('panno').touched">PAN Number is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                        <input type="checkbox" id="terms"
+                                        name="terms" 
+                                        formControlName="terms"
+                                        >
+                                        Accept Terms & Conditions
+                                        </label>
+                                        <br>
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!registrationForm.get('terms').valid && registrationForm.get('terms').touched">Accept Ts & Cs is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit"  [disabled]="!registrationForm.valid" class="btn btn-primary headerButton">Register</button>
+                            <button type="button" class="btn btn-secondary headerButton" (click)="onReset()">Cancel</button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>

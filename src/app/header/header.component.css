@@ -1,0 +1,19 @@
+.headerButton{
+    padding: 5px;
+    margin: 1%;
+}
+.userloggedin{
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 9px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color:rgb(49, 6, 128)
+}
+
+.usernotloggedin{
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 9px;
+    color:white;
+}

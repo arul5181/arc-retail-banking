@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="loginform">
+        <h3>{{ LoginRole }}  Login<div class="float-end"><a routerLink="/home"><button type="button" class="btn btn-success headerButton">Back to home</button></a></div></h3>
+        
+        <hr/>
+        <div class="panel-body">
+            
+            <form (ngSubmit)="onLoginForm()" #lo="ngForm" >
+            <div class="form-group">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" class="form-control" placeholder="Enter Username" 
+                name="userName" ngModel userName
+                required 
+                #userName="ngModel"
+                 />
+                <span class="text-danger font-weight-bold" *ngIf="!userName.valid && userName.touched">UserName is required</span>
+            </div>
+            <div class="form-group">
+                <label for="psw"><b>Password</b></label>
+                <input type="password" class="form-control" placeholder="Enter Password" 
+                name="password"
+                ngModel password
+                required
+                #password="ngModel"
+                 />
+                <span class="text-danger font-weight-bold" *ngIf="!password.valid && password.touched">Password is required</span>
+            </div>
+            <button class="btn btn-primary btn-block mt-4"  type="submit"
+            [disabled]="!lo.valid">Login</button>
+            
+            </form>
+        </div>
+    </div>
+</div>

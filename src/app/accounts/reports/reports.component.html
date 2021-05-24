@@ -1,0 +1,163 @@
+<div class="container mx-auto mt-4">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Account Statement for Account Number {{accountNumber}}</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="accountStatementForm" (ngSubmit)="onFilterReport()" >
+                        <div id="accountstatement-data">
+                              <div class="form-group">
+                                  <label for="filterCriteria">Filter Criteria</label>
+                                  <select class="form-select" 
+                                        id="filterCriteria"                                        
+                                        name="filterCriteria" 
+                                        formControlName="filterCriteria"
+                                        [(ngModel)]="filterType"
+                                        >
+                                            <option value="Transaction Type" selected>Transaction Type</option>
+                                            <option value="Date Range">Date Range</option>
+                                            <option value="Amount Range">Amount Range</option>
+                                        </select>
+                                  <span class="text-danger font-weight-bold" 
+                                  *ngIf="!accountStatementForm.get('filterCriteria').valid && isClicked">Filter Criteria is required</span>
+                                </div>
+                                <div [ngSwitch]="filterType">
+                                    <div class="form-group" *ngSwitchCase="'Transaction Type'">
+                                        <label for="transactionType">Transaction Type</label>
+                                        <select id="transactionType" 
+                                        class="form-select"
+                                        name="transactionType" 
+                                        formControlName="transactionType"
+                                        >
+                                        <option value="Debit">Debit</option>
+                                        <option value="Credit">Credit</option>
+                                        </select>
+                                        <span class="text-danger font-weight-bold" 
+                                        *ngIf="!accountStatementForm.get('transactionType').valid && isClicked">Transaction Type is required</span>
+                                      </div>
+
+                                      <div class="form-group-row" *ngSwitchCase="'Date Range'" formGroupName="daterange">
+                                        <div class="form-group mb-3  mt-3">
+                                            <label for="fromdate">From Date</label>
+                                            <input type="date" id="fromdate" 
+                                            class="form-control"
+                                            name="fromdate" 
+                                            formControlName="fromdate"
+                                            >
+                                            <span class="text-danger font-weight-bold" 
+                                            *ngIf="!accountStatementForm.get('daterange.fromdate').valid && isClicked">From Date is required</span>
+                                        </div>
+                                        <div class="form-group mb-3  mt-3">
+                                            <label for="todate">To Date</label>
+                                            <input type="date" id="todate" 
+                                            class="form-control"
+                                            name="todate" 
+                                            formControlName="todate"
+                                            >
+                                            <span class="text-danger font-weight-bold" 
+                                            *ngIf="!accountStatementForm.get('daterange.todate').valid && isClicked">To Date is required</span>
+                                        </div>
+                                      </div>
+                                      <div class="form-group-row" *ngSwitchCase="'Amount Range'" formGroupName="amountrange">
+                                        <div class="form-group mb-3  mt-3">
+                                            <label for="amountrangetype">Range Type</label>
+                                            <select id="amountrangetype" 
+                                            class="form-select"
+                                            name="amountrangetype" 
+                                            formControlName="amountrangetype"
+                                            >
+                                            <option value="GT">Greater Than</option>
+                                            <option value="LT">Less Than</option>
+                                            <option value="EQ">Equal to</option>
+                                            </select>
+                                            <span class="text-danger font-weight-bold" 
+                                            *ngIf="!accountStatementForm.get('amountrange.amountrangetype').valid && isClicked">Range Type is required</span>
+                                        </div>
+                                        <div class="form-group mb-3  mt-3">
+                                            <label for="amount">Amount</label>
+                                            <input type="number" id="amount" 
+                                            class="form-control"
+                                            name="amount" 
+                                            formControlName="amount"
+                                            >
+                                            <span class="text-danger font-weight-bold" 
+                                            *ngIf="!accountStatementForm.get('amountrange.amount').valid && isClicked">Amount is required</span>
+                                        </div>
+                                      </div>
+                                      <div *ngSwitchDefault></div>
+                                </div>
+                                <div class="mt-3">
+                                  <button type="submit"  class="btn btn-primary headerButton mx-3">Fetch Statement</button>
+                                  <button type="button" class="btn btn-secondary headerButton" (click)="onReset()">Reset</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-5 d-flex justify-content-center" *ngIf="transactionDetail.length === 0">
+    <p class="text-danger">No Transaction Found!</p>
+  </div>
+
+  <div class="mx-auto m-5 w-100"
+  *ngIf="transactionDetail.length > 0">
+    
+  <div class="mt-3 float-end">
+    <button type="button" class="btn btn-success headerButton" (click)="onExporttoExcel()">Export</button>
+  </div>
+      <table class="table table-bordered table-condensed table-striped">
+          <thead>
+              <tr>
+                <th>Transaction Date</th>
+                <th>Transaction Type</th>
+                <th>Balance on Date</th>
+                <th>Transaction Amount</th>
+                <th>From Account Number</th>
+                <th>To Account Number</th>
+                <th>Transaction Time</th>
+                <th>Transaction Id</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+          </thead>
+          <tbody *ngFor="let transaction of transactionDetail;">
+            <tr>
+              <td>
+                  {{transaction.TransactionDate | date}}
+              </td>
+              <td>
+                  {{transaction.TransactionType}}
+              </td>
+              <td>
+                  {{transaction.BalanceonDate}}
+              </td>
+              <td>
+                  {{transaction.TransactionAmount}}
+              </td>
+              <td>
+                  {{transaction.FromAccountNumber}}
+              </td>
+              <td>
+                  {{transaction.ToAccountNumber}}
+              </td>
+              <td>
+                  {{transaction.TransactionDate | date:'mediumTime'}}
+              </td>
+              <td>
+                  {{transaction.TransactionID}}
+              </td>
+              <td>
+                  {{transaction.TransactionStatus}}
+              </td>
+              <td>
+                  {{transaction.TransactionRemarks}}
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>

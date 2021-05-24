@@ -1,0 +1,38 @@
+      <div class="mx-auto m-5 w-75">
+        <table id="customerListTable" 
+        class="table table-bordered table-condensed table-striped"
+        >
+            <thead>
+                <tr>
+                  <th>Account Number</th>
+                  <th>Account Type</th>
+                  <th>Balance</th>
+                  <!-- <th>Last Transaction made</th> -->
+                  <th></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let account of accountList;">
+              <tr>
+                <td>
+                    {{account.AccountNumber}}
+                </td>
+                <td [ngSwitch]="account.AccountType">
+                   <span *ngSwitchCase="'S'">Single Account</span>
+                   <span *ngSwitchCase="'J'">Joint Account</span>
+                   <span *ngSwitchDefault></span>
+                </td>
+                <td>
+                  {{account.CurrentBalance}}
+                </td>
+                <!-- <td>
+                    <span [innerHTML]="getLastTransactionDate(account.AccountNumber)"></span>
+                </td> -->
+                <td>
+                    <button class="btn btn-outline-primary mb-2 mr-2" type="button" 
+                    (click)="viewMiniStatement(account.AccountNumber)">Mini Statement</button>
+                    
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>

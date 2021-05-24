@@ -1,0 +1,93 @@
+<div class="container mx-auto mt-4">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Inter Bank Fund Transfer</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="fundTransferForm" (ngSubmit)="onTransferFund()" >
+                        <div id="transfer-data">
+                            <div class="form-group mb-3">
+                                <label for="fromAccountNo">From Account Number</label>
+                                <input type="text" id="fromAccountNo" 
+                                class="form-control"
+                                name="fromAccountNo" 
+                                formControlName="fromAccountNo"
+                                [(ngModel)]="customerAccountNo">
+                                <span class="text-danger font-weight-bold" 
+                                *ngIf="!fundTransferForm.get('fromAccountNo').valid && fundTransferForm.get('fromAccountNo').touched">From Account No is required</span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="currentBalance">Available Balance</label>
+                                  <input type="text" id="currentBalance" 
+                                  class="form-control"
+                                  name="currentBalance" 
+                                  formControlName="currentBalance"
+                                  [(ngModel)]="currentBalance">
+                                </div>
+                              <div class="form-group">
+                                  <label for="transactionType">Transaction Type</label>
+                                  <select class="form-select" 
+                                        id="transactionType"                                        
+                                        name="transactionType" 
+                                        formControlName="transactionType"
+                                        >
+                                            <option value="NEFT">NEFT</option>
+                                            <option value="IMPS">IMPS</option>
+                                            <option value="RTGS">RTGS</option>
+                                        </select>
+                                  <span class="text-danger font-weight-bold" 
+                                  *ngIf="!fundTransferForm.get('transactionType').valid && fundTransferForm.get('transactionType').touched">Transfer Type is required</span>
+                                </div>
+                                
+                            <div class="form-group">
+                                <label for="toAccountNo">To Account Number</label>
+                                <select id="toAccountNo" 
+                                class="form-select"
+                                name="toAccountNo" 
+                                formControlName="toAccountNo"
+                                >
+                                <option *ngFor="let account of accountList;" [value]="account.AccountNumber">
+                                  {{account.AccountNumber }}
+                                </option>
+                                </select>
+                                <span class="text-danger font-weight-bold" 
+                                *ngIf="!fundTransferForm.get('toAccountNo').valid && fundTransferForm.get('toAccountNo').touched">To Account No is required</span>
+                              </div>
+                              
+                            <div class="form-group mb-3  mt-3">
+                                <label for="amount">Transfer Amount</label>
+                                <input type="number" id="amount" 
+                                class="form-control"
+                                name="amount" 
+                                formControlName="amount"
+                                >
+                                <span class="text-danger font-weight-bold" 
+                                *ngIf="!fundTransferForm.get('amount').valid && fundTransferForm.get('amount').touched">Transfer Amount is required</span>
+                              </div>
+
+                              
+                            <div class="form-group mb-3  mt-3">
+                                <label for="remarks">Remarks</label>
+                                <input type="text" id="remarks" 
+                                class="form-control"
+                                name="remarks" 
+                                formControlName="remarks"
+                                >
+                                <span class="text-danger font-weight-bold" 
+                                *ngIf="!fundTransferForm.get('remarks').valid && fundTransferForm.get('remarks').touched">Remarks is required</span>
+                              </div>
+                             
+                                <div class="mt-3">
+                                  <button type="submit"  [disabled]="!fundTransferForm.valid" class="btn btn-primary headerButton mx-4">Transfer Fund</button>
+                                  <button type="button" class="btn btn-secondary headerButton" (click)="onReset()">Reset</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+  

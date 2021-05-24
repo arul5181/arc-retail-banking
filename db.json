@@ -1,0 +1,220 @@
+{
+  "Users": [
+    {
+      "FirstName": "ARC Banking",
+      "LastName": "Admin",
+      "Salutation": "Mr",
+      "Email": "admin",
+      "Password": "123",
+      "CustomerId": "ADMIN",
+      "MobileNumber": 9876543210,
+      "Gender": "M",
+      "DateOfBirth": null,
+      "RoleType": "A",
+      "IsAccountMapped": false,
+      "IsAccountActive": true,
+      "id": 1
+    },
+    {
+      "FirstName": "Arul",
+      "LastName": "Prasad",
+      "Salutation": "Mr",
+      "Email": "arul@hcl.com",
+      "Password": "123",
+      "CustomerId": "12345",
+      "MobileNumber": 9876543210,
+      "Gender": "Male",
+      "DateOfBirth": "2021-05-06",
+      "PANNo": "ASDPA1234A",
+      "RoleType": "U",
+      "IsAccountMapped": true,
+      "IsAccountActive": true,
+      "id": 2
+    },
+    {
+      "FirstName": "Maha",
+      "LastName": "Laxmi",
+      "Salutation": "Mr",
+      "Email": "maha@gmail.com",
+      "Password": "123",
+      "CustomerId": "C2349",
+      "MobileNumber": 9887898213,
+      "Gender": "Female",
+      "DateOfBirth": "2002-02-20",
+      "PANNo": "BGFBL1233D",
+      "RoleType": "U",
+      "IsAccountMapped": true,
+      "IsAccountActive": true,
+      "id": 3
+    },
+    {
+      "FirstName": "Gopal",
+      "LastName": "Samy",
+      "Salutation": "Mr",
+      "Email": "gopal@gmail.com",
+      "Password": "123",
+      "CustomerId": "C7699",
+      "MobileNumber": 9878909883,
+      "Gender": "Male",
+      "DateOfBirth": "1988-06-16",
+      "PANNo": "CDRVF2345R",
+      "RoleType": "U",
+      "IsAccountMapped": false,
+      "IsAccountActive": true,
+      "id": 4
+    },
+    {
+      "FirstName": "Manju",
+      "LastName": "R",
+      "Salutation": "Mrs",
+      "Email": "man@gmail.com",
+      "Password": "123",
+      "CustomerId": "C6723",
+      "MobileNumber": 9009809898,
+      "Gender": "Female",
+      "DateOfBirth": "1994-11-29",
+      "PANNo": "GFRDV9876W",
+      "RoleType": "U",
+      "IsAccountMapped": true,
+      "IsAccountActive": true,
+      "id": 5
+    },
+    {
+      "FirstName": "Ram",
+      "LastName": "Kumar",
+      "Salutation": "Mr",
+      "Email": "ram@gmail.com",
+      "Password": "123",
+      "CustomerId": "R89700",
+      "MobileNumber": 9870009887,
+      "Gender": "Male",
+      "DateOfBirth": "2001-02-13",
+      "PANNo": "KJMVR8765I",
+      "RoleType": "U",
+      "IsAccountMapped": false,
+      "IsAccountActive": true,
+      "id": 6
+    }
+  ],
+  "Transaction": [
+    {
+      "CustomerID": "12345",
+      "FromAccountNumber": 14434491,
+      "ToAccountNumber": 18130908,
+      "TransactionType": "NEFT",
+      "TransactionAmount": 15,
+      "TransactionRemarks": "Morning Coffee",
+      "TransactionDate": "2021-05-20T12:23:07.932Z",
+      "TransactionStatus": "Success",
+      "DebitBalanceonDate": 985,
+      "CreditBalanceonDate": 1515,
+      "TransactionID": 2721248895,
+      "id": 1
+    },
+    {
+      "CustomerID": "12345",
+      "FromAccountNumber": 14434491,
+      "ToAccountNumber": 18130908,
+      "TransactionType": "NEFT",
+      "TransactionAmount": 40,
+      "TransactionRemarks": "Breakfast",
+      "TransactionDate": "2021-05-21T12:24:06.971Z",
+      "TransactionStatus": "Success",
+      "DebitBalanceonDate": 945,
+      "CreditBalanceonDate": 1555,
+      "TransactionID": 3761806227,
+      "id": 2
+    },
+    {
+      "CustomerID": "C2349",
+      "FromAccountNumber": 18130908,
+      "ToAccountNumber": 14434491,
+      "TransactionType": "IMPS",
+      "TransactionAmount": 100,
+      "TransactionRemarks": "Lunch",
+      "TransactionDate": "2021-05-23T12:24:57.304Z",
+      "TransactionStatus": "Success",
+      "DebitBalanceonDate": 1455,
+      "CreditBalanceonDate": 1045,
+      "TransactionID": 3201558399,
+      "id": 3
+    },
+    {
+      "CustomerID": "C2349",
+      "FromAccountNumber": 18130908,
+      "ToAccountNumber": 14434491,
+      "TransactionType": "NEFT",
+      "TransactionAmount": 250,
+      "TransactionRemarks": "Recharge",
+      "TransactionDate": "2021-05-23T12:25:34.047Z",
+      "TransactionStatus": "Success",
+      "DebitBalanceonDate": 1205,
+      "CreditBalanceonDate": 1295,
+      "TransactionID": 3782573369,
+      "id": 4
+    },
+    {
+      "CustomerID": "12345",
+      "FromAccountNumber": 14434491,
+      "ToAccountNumber": 13349703,
+      "TransactionType": "NEFT",
+      "TransactionAmount": 550,
+      "TransactionRemarks": "Mobile Bill",
+      "TransactionDate": "2021-05-24T03:39:38.210Z",
+      "TransactionStatus": "Success",
+      "DebitBalanceonDate": 745,
+      "CreditBalanceonDate": 5550,
+      "TransactionID": 3032570050,
+      "id": 5
+    }
+  ],
+  "Account": [
+    {
+      "AccountNumber": 14434491,
+      "AccountType": "S",
+      "CustomerID": "12345",
+      "BranchID": "B001",
+      "OpeningBalance": 1000,
+      "id": 1,
+      "CurrentBalance": 745
+    },
+    {
+      "AccountNumber": 18130908,
+      "AccountType": "S",
+      "CustomerID": "C2349",
+      "BranchID": "B001",
+      "OpeningBalance": 1500,
+      "CurrentBalance": 1205,
+      "id": 2
+    },
+    {
+      "AccountNumber": 13349703,
+      "AccountType": "S",
+      "CustomerID": "C6723",
+      "BranchID": "B003",
+      "OpeningBalance": 5000,
+      "CurrentBalance": 5550,
+      "id": 3
+    }
+  ],
+  "Branch": [
+    {
+      "BranchID": "B001",
+      "BranchName": "CHENNAI ADAYAR",
+      "IFSCCode": "ARC0000234",
+      "Address": "Adyar"
+    },
+    {
+      "BranchID": "B002",
+      "BranchName": "CHENNAI CENTRAL",
+      "IFSCCode": "ARC0000264",
+      "Address": "Central"
+    },
+    {
+      "BranchID": "B003",
+      "BranchName": "CHENNAI PARIS",
+      "IFSCCode": "ARC0000254",
+      "Address": "Paris"
+    }
+  ]
+}

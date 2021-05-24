@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isAdminLogged == true">
+            <a  routerLink="/accountcreation" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"
+            class="navbar-brand">ARC Banking - Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li routerLinkActive="active" class="nav-item"><a routerLink="accountcreation" class="nav-link">Open Account</a></li>
+                <li routerLinkActive="active" class="nav-item"><a routerLink="searchaccount" class="nav-link">View Accounts</a></li>
+            </ul>
+            <ul class="navbar-nav mx-auto float-end">
+                <li class="nav-item" [ngClass]="isUserLoggedIn? 'userloggedin':'usernotloggedin'"> Welcome {{userDetail.FirstName + ' ' + userDetail.LastName}}</li>
+                <li class="nav-item" routerLinkActive="active"><a routerLink="" class="nav-link" (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isAdminLogged == false">
+        <a  routerLink="customerdashboard" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}"
+        class="navbar-brand">ARC Banking - Customer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustomer" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCustomer">
+            <ul class="navbar-nav mr-auto">
+                <li routerLinkActive="active" class="nav-item"><a routerLink="customerdashboard" class="nav-link">Account Summary</a></li>
+                <li routerLinkActive="active" class="nav-item"><a routerLink="transfer" class="nav-link">Fund Transfer</a></li>
+            </ul>
+            <ul class="navbar-nav mx-auto float-end">
+                <li class="nav-item" [ngClass]="isUserLoggedIn? 'userloggedin':'usernotloggedin'"> Welcome {{userDetail.FirstName + ' ' + userDetail.LastName}}</li>
+                <li class="nav-item" routerLinkActive="active"><a routerLink=""  (click)="logout()" class="nav-link">Logout</a></li>
+            </ul>
+        </div>
+</nav>

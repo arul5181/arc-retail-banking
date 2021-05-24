@@ -1,0 +1,90 @@
+<div class="container mx-auto mt-4">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Search Account</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="accountStatementForm" (ngSubmit)="onFilterAccount()" >
+                        <div id="accounts-data">
+                              <div class="form-group">
+                                  <label for="searchCriteria">Search By</label>
+                                  <select class="form-select" 
+                                        id="searchCriteria"                                        
+                                        name="searchCriteria" 
+                                        formControlName="searchCriteria"
+                                        >
+                                            <option value="AccNo">Account Number</option>
+                                            <option value="CustomerId">CustomerId</option>
+                                        </select>
+                                  <span class="text-danger font-weight-bold" 
+                                  *ngIf="!accountStatementForm.get('searchCriteria').valid && isClicked">Search Criteria is required</span>
+                                </div>
+                                <div class="form-group mb-3  mt-3">
+                                    <label for="searchtext">Search Text</label>
+                                    <input type="text" id="searchtext" 
+                                    class="form-control"
+                                    name="searchtext" 
+                                    formControlName="searchtext"
+                                    >
+                                    <span class="text-danger font-weight-bold" 
+                                    *ngIf="!accountStatementForm.get('searchtext').valid && isClicked">Search Text is required</span>
+                                </div>
+                                <div class="mt-3">
+                                  <button type="submit" class="btn btn-primary headerButton mx-3">Search</button>
+                                  <button type="button" class="btn btn-secondary headerButton" (click)="onReset()">Reset</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="mx-auto mt-5 d-flex justify-content-center" *ngIf="accountList.length === 0">
+  <p class="text-danger">No Account(s) Found!</p>
+</div>
+  <div class="mx-auto m-5 w-75" *ngIf="accountList.length > 0">
+    <table
+    class="table table-bordered table-condensed table-striped"
+    >
+        <thead>
+            <tr>
+              <th>Account Number</th>
+              <th>Customer Id</th>
+              <th>Account Type</th>
+              <th>Balance</th>
+              <th>Branch</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let account of accountList;">
+          <tr>
+            <td>
+                {{account.AccountNumber}}
+            </td>
+            <td>
+                {{account.CustomerID}}
+            </td>
+            <td [ngSwitch]="account.AccountType">
+               <span *ngSwitchCase="'S'">Single Account</span>
+               <span *ngSwitchCase="'J'">Joint Account</span>
+               <span *ngSwitchDefault></span>
+            </td>
+            <td>
+              {{account.CurrentBalance}}
+            </td>
+            <td>
+                {{account.BranchID}}
+            </td>
+            <td>
+                <button class="btn btn-outline-primary mb-2 mr-2" type="button" 
+                (click)="viewMiniStatement(account.AccountNumber)">Mini Statement</button>
+                
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
